@@ -1987,31 +1987,71 @@ var parseResult = (state) => {
 async function getNextResult(connection, user, prevNonce) {
   return new Promise((resolve, reject) => {
     if (!connection || !connection.onAccountChange) {
-      return reject("Connection not available or missing onAccountChange method");
+      return reject(new Error("Connection not available or missing onAccountChange method"));
     }
     let listener;
+    let timeout;
+    let resolved = false;
+    const cleanup = () => {
+      if (listener !== void 0 && connection?.removeAccountChangeListener) {
+        try {
+          connection.removeAccountChangeListener(listener);
+        } catch (err) {
+          console.warn("Error removing account listener:", err);
+        }
+        listener = void 0;
+      }
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = void 0;
+      }
+    };
+    timeout = setTimeout(() => {
+      if (!resolved) {
+        resolved = true;
+        cleanup();
+        reject(new Error("Timeout waiting for game result"));
+      }
+    }, 3e4);
     try {
       listener = connection.onAccountChange(
         getGameAddress(user),
         async (account) => {
-          const current = decodeGame(account);
-          if (!current) {
-            if (listener !== void 0 && connection?.removeAccountChangeListener) {
-              connection.removeAccountChangeListener(listener);
+          if (resolved)
+            return;
+          try {
+            const current = decodeGame(account);
+            if (!current) {
+              resolved = true;
+              cleanup();
+              return reject(new Error("Game account was closed"));
             }
-            return reject("Game account was closed");
-          }
-          if (current.nonce.toNumber() === prevNonce + 1) {
-            if (listener !== void 0 && connection?.removeAccountChangeListener) {
-              connection.removeAccountChangeListener(listener);
+            const currentNonce = current.nonce.toNumber();
+            if (currentNonce === prevNonce + 1) {
+              resolved = true;
+              cleanup();
+              try {
+                const result = await parseResult(current);
+                return resolve(result);
+              } catch (err) {
+                return reject(new Error(`Error parsing result: ${err}`));
+              }
             }
-            const result = await parseResult(current);
-            return resolve(result);
+          } catch (err) {
+            console.warn("Error processing account change:", err);
           }
-        }
+        },
+        "confirmed"
       );
     } catch (error) {
-      return reject(`Error setting up account change listener: ${error}`);
+      resolved = true;
+      cleanup();
+      return reject(new Error(`Error setting up account change listener: ${error}`));
+    }
+    if (!listener) {
+      resolved = true;
+      cleanup();
+      return reject(new Error("Failed to set up account change listener"));
     }
   });
 }

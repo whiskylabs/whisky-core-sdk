@@ -1,7 +1,7 @@
 {
   "name": "@whisky-gaming/core",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Core SDK for Whisky Gaming Protocol",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
