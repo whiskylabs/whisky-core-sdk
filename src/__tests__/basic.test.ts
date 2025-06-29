@@ -8,7 +8,7 @@ declare const jest: any;
 describe('Whisky Core SDK Basic Tests', () => {
   test('should validate constants', () => {
     expect(PROGRAM_ID).toBeInstanceOf(PublicKey);
-    expect(PROGRAM_ID.toString()).toBe('6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6');
+    expect(PROGRAM_ID.toString()).toBe('HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb');
     expect(BPS_PER_WHOLE).toBe(10000);
   });
 

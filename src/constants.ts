@@ -1,6 +1,6 @@
 import { PublicKey } from '@solana/web3.js'
 
-export const PROGRAM_ID = new PublicKey('6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6')
+export const PROGRAM_ID = new PublicKey('HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb')
 export const SYSTEM_PROGRAM = new PublicKey('11111111111111111111111111111111')
 
 export const BPS_PER_WHOLE = 10_000

@@ -9,7 +9,7 @@ import { AddressLookupTableProgram, Keypair, PublicKey as PublicKey3, SystemProg
 
 // src/constants.ts
 import { PublicKey } from "@solana/web3.js";
-var PROGRAM_ID = new PublicKey("6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6");
+var PROGRAM_ID = new PublicKey("HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb");
 var SYSTEM_PROGRAM = new PublicKey("11111111111111111111111111111111");
 var BPS_PER_WHOLE = 1e4;
 var GAME_SEED = "GAME";
@@ -1837,7 +1837,7 @@ var IDL = {
     }
   ],
   "metadata": {
-    "address": "6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6"
+    "address": "HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb"
   }
 };
 

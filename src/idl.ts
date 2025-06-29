@@ -1812,7 +1812,7 @@ export type WhiskyCore = {
     }
   ],
   "metadata": {
-    "address": "6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6"
+    "address": "HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb"
   }
 }
 
@@ -3630,6 +3630,6 @@ export const IDL: WhiskyCore = {
       }
     ],
     "metadata": {
-      "address": "6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6"
+      "address": "HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb"
     }
   }

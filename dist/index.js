@@ -92,7 +92,7 @@ var import_web33 = require("@solana/web3.js");
 
 // src/constants.ts
 var import_web3 = require("@solana/web3.js");
-var PROGRAM_ID = new import_web3.PublicKey("6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6");
+var PROGRAM_ID = new import_web3.PublicKey("HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb");
 var SYSTEM_PROGRAM = new import_web3.PublicKey("11111111111111111111111111111111");
 var BPS_PER_WHOLE = 1e4;
 var GAME_SEED = "GAME";
@@ -1920,7 +1920,7 @@ var IDL = {
     }
   ],
   "metadata": {
-    "address": "6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6"
+    "address": "HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb"
   }
 };
 

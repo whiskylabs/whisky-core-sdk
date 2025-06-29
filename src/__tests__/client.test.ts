@@ -10,7 +10,7 @@ describe('WhiskyClient Tests', () => {
   test('should validate constants', () => {
     const { PROGRAM_ID } = require('../constants');
     expect(PROGRAM_ID).toBeInstanceOf(PublicKey);
-    expect(PROGRAM_ID.toString()).toBe('6R7S7r6KzU1A5YACXCaKuF6GcEcv5ZdXU4hh8vPozcw6');
+    expect(PROGRAM_ID.toString()).toBe('HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb');
   });
 
   test('should validate PDA functions', () => {

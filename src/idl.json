@@ -1,0 +1,3751 @@
+{
+  "address": "HBEQTKVQE2BvvVAN6b21srMXcYchHXQFy7kaQmgyoLdb",
+  "metadata": {
+    "name": "whisky_core",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Whisky Gaming Protocol - Decentralized Gaming on Solana"
+  },
+  "instructions": [
+    {
+      "name": "distribute_fees",
+      "docs": [
+        "Distribute protocol fees"
+      ],
+      "discriminator": [
+        120,
+        56,
+        27,
+        7,
+        53,
+        176,
+        113,
+        186
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "whisky_state_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "whisky_state"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "distribution_recipient_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "whisky_state.distribution_recipient",
+                "account": "WhiskyState"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "whisky_state"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "_native_sol",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "play_game",
+      "docs": [
+        "Place a bet and start a game"
+      ],
+      "discriminator": [
+        37,
+        88,
+        207,
+        85,
+        42,
+        144,
+        122,
+        197
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool.pool_authority",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  76,
+                  65,
+                  89,
+                  69,
+                  82
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  65,
+                  77,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "pool_underlying_token_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_underlying_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "player_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "player"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "creator"
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "player",
+            "game"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "wager",
+          "type": "u64"
+        },
+        {
+          "name": "bet",
+          "type": {
+            "vec": "u32"
+          }
+        },
+        {
+          "name": "client_seed",
+          "type": "string"
+        },
+        {
+          "name": "creator_fee_bps",
+          "type": "u32"
+        },
+        {
+          "name": "jackpot_fee_bps",
+          "type": "u32"
+        },
+        {
+          "name": "metadata",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "player_claim",
+      "docs": [
+        "Claim winnings after game settlement"
+      ],
+      "discriminator": [
+        188,
+        220,
+        237,
+        31,
+        181,
+        18,
+        85,
+        45
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  76,
+                  65,
+                  89,
+                  69,
+                  82
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  65,
+                  77,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "player_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "player"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_underlying_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user",
+          "signer": true,
+          "relations": [
+            "player",
+            "game"
+          ]
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "player_close",
+      "docs": [
+        "Close player account"
+      ],
+      "discriminator": [
+        26,
+        155,
+        61,
+        179,
+        53,
+        157,
+        80,
+        30
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  76,
+                  65,
+                  89,
+                  69,
+                  82
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  65,
+                  77,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "signer": true,
+          "relations": [
+            "player",
+            "game"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "player_initialize",
+      "docs": [
+        "Initialize player and game accounts"
+      ],
+      "discriminator": [
+        213,
+        160,
+        145,
+        88,
+        197,
+        68,
+        63,
+        150
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  76,
+                  65,
+                  89,
+                  69,
+                  82
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  65,
+                  77,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "pool_deposit",
+      "docs": [
+        "Deposit tokens to provide liquidity"
+      ],
+      "discriminator": [
+        26,
+        109,
+        164,
+        79,
+        207,
+        145,
+        204,
+        217
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool.pool_authority",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "lp_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76,
+                  95,
+                  76,
+                  80,
+                  95,
+                  77,
+                  73,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool.pool_authority",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_underlying_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_underlying_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_lp_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lp_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "pool_initialize",
+      "docs": [
+        "Initialize a gaming pool"
+      ],
+      "discriminator": [
+        37,
+        10,
+        195,
+        69,
+        4,
+        213,
+        88,
+        173
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool_authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "pool_authority"
+        },
+        {
+          "name": "lp_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76,
+                  95,
+                  76,
+                  80,
+                  95,
+                  77,
+                  73,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool_authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_underlying_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "pool_jackpot_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "pool_authority",
+          "type": "pubkey"
+        },
+        {
+          "name": "lookup_address",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "pool_withdraw",
+      "docs": [
+        "Withdraw liquidity from pool"
+      ],
+      "discriminator": [
+        50,
+        1,
+        23,
+        25,
+        135,
+        221,
+        159,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool.pool_authority",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "lp_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76,
+                  95,
+                  76,
+                  80,
+                  95,
+                  77,
+                  73,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool.pool_authority",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_underlying_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_underlying_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_lp_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lp_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "rng_provide_hashed_seed",
+      "docs": [
+        "Provide next RNG seed hash"
+      ],
+      "discriminator": [
+        238,
+        154,
+        25,
+        143,
+        191,
+        19,
+        25,
+        224
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  65,
+                  77,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game.user",
+                "account": "Game"
+              }
+            ]
+          }
+        },
+        {
+          "name": "rng",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "next_rng_seed_hashed",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "rng_settle",
+      "docs": [
+        "Settle game with RNG (called by RNG authority)"
+      ],
+      "discriminator": [
+        23,
+        35,
+        236,
+        185,
+        14,
+        171,
+        26,
+        222
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  65,
+                  77,
+                  69
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game.user",
+                "account": "Game"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool_underlying_token_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "pool_jackpot_token_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "pool"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  79,
+                  76
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "underlying_token_mint"
+              },
+              {
+                "kind": "account",
+                "path": "pool.pool_authority",
+                "account": "Pool"
+              }
+            ]
+          }
+        },
+        {
+          "name": "underlying_token_mint"
+        },
+        {
+          "name": "rng",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "rng_seed",
+          "type": "string"
+        },
+        {
+          "name": "next_rng_seed_hashed",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "whisky_initialize",
+      "docs": [
+        "Initialize the global Whisky gaming protocol"
+      ],
+      "discriminator": [
+        192,
+        47,
+        250,
+        59,
+        255,
+        210,
+        109,
+        83
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "initializer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "whisky_set_authority",
+      "docs": [
+        "Set protocol authority"
+      ],
+      "discriminator": [
+        113,
+        203,
+        224,
+        194,
+        118,
+        15,
+        78,
+        213
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "whisky_state"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "authority",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "whisky_set_config",
+      "docs": [
+        "Configure protocol settings"
+      ],
+      "discriminator": [
+        46,
+        223,
+        85,
+        245,
+        200,
+        21,
+        43,
+        22
+      ],
+      "accounts": [
+        {
+          "name": "whisky_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  87,
+                  72,
+                  73,
+                  83,
+                  75,
+                  89,
+                  95,
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "whisky_state"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "rng_address",
+          "type": "pubkey"
+        },
+        {
+          "name": "whisky_fee",
+          "type": "u64"
+        },
+        {
+          "name": "max_creator_fee",
+          "type": "u64"
+        },
+        {
+          "name": "pool_creation_fee",
+          "type": "u64"
+        },
+        {
+          "name": "anti_spam_fee",
+          "type": "u64"
+        },
+        {
+          "name": "max_house_edge",
+          "type": "u64"
+        },
+        {
+          "name": "default_pool_fee",
+          "type": "u64"
+        },
+        {
+          "name": "jackpot_payout_to_user_bps",
+          "type": "u64"
+        },
+        {
+          "name": "jackpot_payout_to_creator_bps",
+          "type": "u64"
+        },
+        {
+          "name": "jackpot_payout_to_pool_bps",
+          "type": "u64"
+        },
+        {
+          "name": "jackpot_payout_to_whisky_bps",
+          "type": "u64"
+        },
+        {
+          "name": "bonus_to_jackpot_ratio_bps",
+          "type": "u64"
+        },
+        {
+          "name": "max_payout_bps",
+          "type": "u64"
+        },
+        {
+          "name": "pool_withdraw_fee_bps",
+          "type": "u64"
+        },
+        {
+          "name": "pool_creation_allowed",
+          "type": "bool"
+        },
+        {
+          "name": "pool_deposit_allowed",
+          "type": "bool"
+        },
+        {
+          "name": "pool_withdraw_allowed",
+          "type": "bool"
+        },
+        {
+          "name": "playing_allowed",
+          "type": "bool"
+        },
+        {
+          "name": "distribution_recipient",
+          "type": "pubkey"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Game",
+      "discriminator": [
+        27,
+        90,
+        166,
+        125,
+        74,
+        100,
+        121,
+        18
+      ]
+    },
+    {
+      "name": "Player",
+      "discriminator": [
+        205,
+        222,
+        112,
+        7,
+        165,
+        155,
+        206,
+        218
+      ]
+    },
+    {
+      "name": "Pool",
+      "discriminator": [
+        241,
+        154,
+        109,
+        4,
+        17,
+        177,
+        109,
+        188
+      ]
+    },
+    {
+      "name": "WhiskyState",
+      "discriminator": [
+        122,
+        56,
+        132,
+        55,
+        140,
+        11,
+        179,
+        89
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "GameSettled",
+      "discriminator": [
+        63,
+        109,
+        128,
+        85,
+        229,
+        63,
+        167,
+        176
+      ]
+    },
+    {
+      "name": "PoolChange",
+      "discriminator": [
+        241,
+        7,
+        155,
+        154,
+        56,
+        57,
+        0,
+        101
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized access"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    },
+    {
+      "code": 6002,
+      "name": "InsufficientFunds",
+      "msg": "Insufficient funds"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidConfiguration",
+      "msg": "Invalid configuration"
+    },
+    {
+      "code": 6004,
+      "name": "OperationNotAllowed",
+      "msg": "Operation not allowed"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidProgramState",
+      "msg": "Invalid program state"
+    },
+    {
+      "code": 6006,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidAccount",
+      "msg": "Invalid account"
+    },
+    {
+      "code": 6008,
+      "name": "AlreadyInitialized",
+      "msg": "Account already initialized"
+    },
+    {
+      "code": 6009,
+      "name": "NotInitialized",
+      "msg": "Account not initialized"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidInstruction",
+      "msg": "Invalid instruction"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidMint",
+      "msg": "Invalid mint"
+    },
+    {
+      "code": 6012,
+      "name": "TokenTransferFailed",
+      "msg": "Token transfer failed"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidSignature",
+      "msg": "Invalid signature"
+    },
+    {
+      "code": 6014,
+      "name": "CalculationError",
+      "msg": "Calculation error"
+    },
+    {
+      "code": 6015,
+      "name": "AccountNotInitialized",
+      "msg": "Account not initialized"
+    },
+    {
+      "code": 6016,
+      "name": "AccountAlreadyInitialized",
+      "msg": "Account already initialized"
+    },
+    {
+      "code": 6017,
+      "name": "InsufficientBalance",
+      "msg": "Insufficient balance"
+    }
+  ],
+  "types": [
+    {
+      "name": "Game",
+      "docs": [
+        "Individual game account"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nonce",
+            "docs": [
+              "Game nonce"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "user",
+            "docs": [
+              "Player's wallet address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint",
+            "docs": [
+              "Token mint used for the game"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "pool",
+            "docs": [
+              "Pool used for the game"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Current game status"
+            ],
+            "type": {
+              "defined": {
+                "name": "GameStatus"
+              }
+            }
+          },
+          {
+            "name": "next_rng_seed_hashed",
+            "docs": [
+              "Next RNG seed hash (for verification)"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "rng_seed",
+            "docs": [
+              "RNG seed used for this game"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "docs": [
+              "Game timestamp"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "creator",
+            "docs": [
+              "Game creator address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "creator_meta",
+            "docs": [
+              "Creator metadata"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "wager",
+            "docs": [
+              "Wager amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "underlying_used",
+            "docs": [
+              "Underlying tokens used"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bonus_used",
+            "docs": [
+              "Bonus tokens used"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "creator_fee",
+            "docs": [
+              "Creator fee amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "whisky_fee",
+            "docs": [
+              "Protocol fee amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pool_fee",
+            "docs": [
+              "Pool fee amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_fee",
+            "docs": [
+              "Jackpot fee amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_result",
+            "docs": [
+              "Jackpot result (0 or 1)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_probability_ubps",
+            "docs": [
+              "Jackpot probability in micro basis points"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_payout",
+            "docs": [
+              "Jackpot payout amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "client_seed",
+            "docs": [
+              "Client seed provided by player"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "bet",
+            "docs": [
+              "Bet configuration (weights for each outcome)"
+            ],
+            "type": {
+              "vec": "u32"
+            }
+          },
+          {
+            "name": "result",
+            "docs": [
+              "Game result index"
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "points",
+            "docs": [
+              "Whether points are enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "points_authority",
+            "docs": [
+              "Points authority"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "metadata",
+            "docs": [
+              "Game metadata"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                1
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameSettled",
+      "docs": [
+        "Game settlement event"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "pool",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator_fee",
+            "type": "u64"
+          },
+          {
+            "name": "whisky_fee",
+            "type": "u64"
+          },
+          {
+            "name": "pool_fee",
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_fee",
+            "type": "u64"
+          },
+          {
+            "name": "underlying_used",
+            "type": "u64"
+          },
+          {
+            "name": "bonus_used",
+            "type": "u64"
+          },
+          {
+            "name": "wager",
+            "type": "u64"
+          },
+          {
+            "name": "payout",
+            "type": "u64"
+          },
+          {
+            "name": "multiplier_bps",
+            "type": "u32"
+          },
+          {
+            "name": "payout_from_bonus_pool",
+            "type": "u64"
+          },
+          {
+            "name": "payout_from_normal_pool",
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_probability_ubps",
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_result",
+            "type": "u64"
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "name": "client_seed",
+            "type": "string"
+          },
+          {
+            "name": "result_index",
+            "type": "u32"
+          },
+          {
+            "name": "bet",
+            "type": {
+              "vec": "u32"
+            }
+          },
+          {
+            "name": "jackpot_payout_to_user",
+            "type": "u64"
+          },
+          {
+            "name": "pool_liquidity",
+            "type": "u64"
+          },
+          {
+            "name": "rng_seed",
+            "type": "string"
+          },
+          {
+            "name": "next_rng_seed_hashed",
+            "type": "string"
+          },
+          {
+            "name": "metadata",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameStatus",
+      "docs": [
+        "Game status enumeration"
+      ],
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "ResultRequested"
+          },
+          {
+            "name": "Ready"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Player",
+      "docs": [
+        "Player account for managing game state"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "docs": [
+              "Player's wallet address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "nonce",
+            "docs": [
+              "Current nonce for game sequence"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                1
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pool",
+      "docs": [
+        "Gaming pool account"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pool_authority",
+            "docs": [
+              "Pool authority (creator)"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "underlying_token_mint",
+            "docs": [
+              "Underlying token mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "lookup_address",
+            "docs": [
+              "Pool lookup address for identification"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "anti_spam_fee_exempt",
+            "docs": [
+              "Anti-spam fee exemption"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "min_wager",
+            "docs": [
+              "Minimum wager amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "plays",
+            "docs": [
+              "Number of games played"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "liquidity_checkpoint",
+            "docs": [
+              "Liquidity checkpoint"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "deposit_limit",
+            "docs": [
+              "Whether deposit limit is enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "deposit_limit_amount",
+            "docs": [
+              "Deposit limit amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "custom_pool_fee",
+            "docs": [
+              "Whether custom pool fee is enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "custom_pool_fee_bps",
+            "docs": [
+              "Custom pool fee in BPS"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "custom_whisky_fee",
+            "docs": [
+              "Whether custom whisky fee is enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "custom_whisky_fee_bps",
+            "docs": [
+              "Custom whisky fee in BPS"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "custom_max_payout",
+            "docs": [
+              "Whether custom max payout is enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "custom_max_payout_bps",
+            "docs": [
+              "Custom max payout in BPS"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "custom_bonus_token_mint",
+            "docs": [
+              "Custom bonus token mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "custom_bonus_token",
+            "docs": [
+              "Whether custom bonus token is enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "custom_max_creator_fee",
+            "docs": [
+              "Whether custom max creator fee is enabled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "custom_max_creator_fee_bps",
+            "docs": [
+              "Custom max creator fee in BPS"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "deposit_whitelist_required",
+            "docs": [
+              "Whether deposit whitelist is required"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "deposit_whitelist_address",
+            "docs": [
+              "Deposit whitelist address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                1
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PoolAction",
+      "docs": [
+        "Pool action types for events"
+      ],
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Deposit"
+          },
+          {
+            "name": "Withdraw"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PoolChange",
+      "docs": [
+        "Pool change event"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "pool",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "action",
+            "type": {
+              "defined": {
+                "name": "PoolAction"
+              }
+            }
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "post_liquidity",
+            "type": "u64"
+          },
+          {
+            "name": "lp_supply",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WhiskyState",
+      "docs": [
+        "Global protocol state account"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "docs": [
+              "Protocol authority (admin)"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "rng_address",
+            "docs": [
+              "RNG provider address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "rng_address_2",
+            "docs": [
+              "Secondary RNG provider address"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "anti_spam_fee",
+            "docs": [
+              "Anti-spam fee amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "whisky_fee_bps",
+            "docs": [
+              "Protocol fee in basis points"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pool_creation_fee",
+            "docs": [
+              "Pool creation fee"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "default_pool_fee",
+            "docs": [
+              "Default pool fee in basis points"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_payout_to_user_bps",
+            "docs": [
+              "Jackpot payout to user (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_payout_to_creator_bps",
+            "docs": [
+              "Jackpot payout to creator (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_payout_to_pool_bps",
+            "docs": [
+              "Jackpot payout to pool (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "jackpot_payout_to_whisky_bps",
+            "docs": [
+              "Jackpot payout to protocol (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bonus_to_jackpot_ratio_bps",
+            "docs": [
+              "Bonus to jackpot ratio (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "max_house_edge_bps",
+            "docs": [
+              "Maximum house edge allowed (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "max_creator_fee_bps",
+            "docs": [
+              "Maximum creator fee allowed (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "max_payout_bps",
+            "docs": [
+              "Maximum payout percentage (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pool_withdraw_fee_bps",
+            "docs": [
+              "Pool withdrawal fee (BPS)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pool_creation_allowed",
+            "docs": [
+              "Whether pool creation is allowed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "pool_deposit_allowed",
+            "docs": [
+              "Whether pool deposits are allowed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "pool_withdraw_allowed",
+            "docs": [
+              "Whether pool withdrawals are allowed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "playing_allowed",
+            "docs": [
+              "Whether playing games is allowed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "distribution_recipient",
+            "docs": [
+              "Fee distribution recipient"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                1
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
